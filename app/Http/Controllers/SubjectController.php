@@ -15,8 +15,20 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = $this->getSubjects(request('search'));
+        
         return view('subjects.index')->with('subjects', $subjects);
+    }
+
+    private function getSubjects($search) {
+        if (!isset($search)) {
+            $subjects = Subject::all();
+        } else {
+            $subjects = Subject::where('name', 'like', '%' . $search . '%')
+                ->orWhere('titel', 'like', '%' . $search . '%')
+                ->get();
+        }
+        return $subjects;
     }
 
     /**
