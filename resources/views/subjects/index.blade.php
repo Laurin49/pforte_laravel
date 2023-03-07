@@ -12,10 +12,24 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <div class="flex justify-end">
-                <a href="{{ route('subjects.create')}}" class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">
-                    Create Subject
-                </a>
+            <div class="flex justify-between w-full mt-6">
+                <div class="flex items-center justify-start ">
+                    <form action="#" method="GET">
+                        <input type="text" name="search" 
+                        placeholder="Suchkriterium ..."
+                        class="text-sm font-semibold placeholder-black bg-transparent"
+                        value="{{ request('search') }}">
+                        <button type="submit"
+                            class="inline-flex items-center px-6 py-2 text-sm font-semibold rounded-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                            	suchen
+                        </button>
+                    </form>
+                </div>
+                <div class="flex justify-end">
+                    <a href="{{ route('subjects.create')}}" class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">
+                        Create Subject
+                    </a>
+                </div>
             </div>
         </div>
         <div class="flex flex-col">
