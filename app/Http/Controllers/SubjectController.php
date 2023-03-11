@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubjectController extends Controller
 {
@@ -22,11 +23,11 @@ class SubjectController extends Controller
 
     private function getSubjects($search) {
         if (!isset($search)) {
-            $subjects = Subject::all();
+            $subjects = Subject::orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         } else {
             $subjects = Subject::where('name', 'like', '%' . $search . '%')
                 ->orWhere('titel', 'like', '%' . $search . '%')
-                ->get();
+                ->paginate(10)->withQueryString();
         }
         return $subjects;
     }
@@ -62,6 +63,7 @@ class SubjectController extends Controller
             'titel' => $request->titel,
             'stichpunkte' => $request->stichpunkte,
             'beschreibung' => $request->beschreibung,
+            'kosten' => $request->kosten,
             'category_id' => $request->category_id
         ]);
         return redirect()->route('subjects.index')->with('message', "Subject created successfully");
@@ -75,7 +77,9 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        //
+        return view('subjects.show', [
+            'subject' => $subject
+        ]);
     }
 
     /**
@@ -112,6 +116,7 @@ class SubjectController extends Controller
             'titel' => $request->titel,
             'stichpunkte' => $request->stichpunkte,
             'beschreibung' => $request->beschreibung,
+            'kosten' => $request->kosten,
             'category_id' => $request->category_id
         ]);
         return redirect()->route('subjects.index')->with('message', "Subject updated successfully");

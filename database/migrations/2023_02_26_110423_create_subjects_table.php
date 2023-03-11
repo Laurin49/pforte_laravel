@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('subtitel')->nullable();
             $table->string('stichpunkte')->nullable();
             $table->text('beschreibung')->nullable();
+            $table->text('kosten')->nullable();
             $table->unsignedInteger('category_id');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');

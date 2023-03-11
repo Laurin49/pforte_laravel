@@ -4,7 +4,7 @@
             {{ 'Subjects' }}
         </h2>
     </x-slot>
-    <div class="container max-w-6xl mx-auto mt-20">
+    <div class="container max-w-6xl px-2 mx-auto mt-20">
         <div class="mb-4">
             <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Subjects Liste</h1>
             @if (session()->has('message'))
@@ -47,7 +47,7 @@
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Category
                                 </th>
-                                <th class="text-sm text-left border-b border-gray-200 gray-500 bg-gray-50" colspan="2"">
+                                <th class="text-sm text-left border-b border-gray-200 gray-500 bg-gray-50" colspan="3"">
                                     Action
                                 </th>
                             </tr>
@@ -69,6 +69,14 @@
                                     <div class="flex items-center">
                                         {{ $subject->category->name }}
                                     </div>
+                                </td>
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
+                                    <a href="{{ route('subjects.show', $subject->id) }}" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                        <span class="sr-only">Search</span>
+                                    </a>
                                 </td>
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                                     <a href="{{ route('subjects.edit', $subject->id) }}" class="text-indigo-600 hover:text-indigo-900">
@@ -98,6 +106,9 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="mt-2 mb-2">
+            {{ $subjects->links() }}
         </div>
     </div>
 </x-app-layout>
