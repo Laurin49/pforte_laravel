@@ -6,9 +6,16 @@
     </x-slot>
     <div class="font-sans antialiased">
         <div class="flex flex-col items-center pt-6 bg-gray-100 sm:justify-start sm:pt-0 min-h-fit">
-            <div class="w-full px-16 py-20 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
-                <div class="mb-4">
-                    <h1 class="font-serif text-3xl font-bold">Edit Subject</h1>
+            <div class="w-full px-16 py-20 mt-4 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
+                <div class="flex justify-between w-full mb-6">
+                    <div class="flex items-center justify-start ">
+                        <h1 class="font-serif text-3xl font-bold">Edit Subject</h1>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="{{ URL::previous() }}" class="px-4 py-2 bg-gray-500 rounded-md text-sky-100 hover:bg-gray-600">
+                            <- Back
+                        </a>
+                    </div>
                 </div>
                 <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
                     <form action="{{ route('subjects.update', $subject->id) }}" method="POST">
@@ -44,32 +51,46 @@
                         </div>
                         <!-- Stichpunkte -->
                         <div class="mt-4"
-                        <label class="block text-sm font-medium text-gray-700" for="stichpunkte">
-                            Stichpunkte
-                        </label>
-                        <input
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            type="text" name="stichpunkte" value="{{old('stichpunkte', $subject->stichpunkte)}}">
-                        @error('stichpunkte')
-                        <span class="text-sm text-red-600">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <!-- Beschreibung -->
-                    <div class="mt-4">
-                        <label class="block text-sm font-medium text-gray-700" for="beschreibung">
-                            Beschreibung
-                        </label>
-                        <textarea name="beschreibung"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            rows="4" placeholder="400"> {{old('beschreibung', $subject->beschreibung)}}</textarea>
-                        @error('beschreibung')
-                        <span class="text-sm text-red-600">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
+                            <label class="block text-sm font-medium text-gray-700" for="stichpunkte">
+                                Stichpunkte
+                            </label>
+                            <input
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                type="text" name="stichpunkte" value="{{old('stichpunkte', $subject->stichpunkte)}}">
+                            @error('stichpunkte')
+                            <span class="text-sm text-red-600">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <!-- Beschreibung -->
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700" for="beschreibung">
+                                Beschreibung
+                            </label>
+                            <textarea name="beschreibung"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                rows="4" placeholder="400"> {{old('beschreibung', $subject->beschreibung)}}</textarea>
+                            @error('beschreibung')
+                            <span class="text-sm text-red-600">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <!-- Kosten -->
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700" for="kosten">
+                                Kosten
+                            </label>
+                            <textarea name="kosten"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                rows="4" placeholder="400"> {{old('kosten', $subject->kosten)}}</textarea>
+                            @error('kosten')
+                            <span class="text-sm text-red-600">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
                         {{-- Category --}}
                         <div class="mt-4 mb-6">
                             <label class="block text-sm font-medium text-gray-700" for="category_id">
