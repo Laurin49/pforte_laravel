@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -23,7 +23,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('subjects.index')" :active="request()->routeIs('subjects')">
-                        {{ __('Subjects') }}
+                        {{ __('Themen') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('subjects.index')" :active="request()->routeIs('subjects')">
-                {{ __('Subjects') }}
+                {{ __('Themen') }}
             </x-responsive-nav-link>
         </div>
 

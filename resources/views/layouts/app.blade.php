@@ -13,6 +13,28 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+    
+            table {
+                display: inline-table !important;
+            }
+    
+            thead tr:not(:first-child) {
+                display: none;
+            }
+    
+            td:not(:last-child) {
+                border-bottom: 0;
+            }
+    
+            th:not(:last-child) {
+                border-bottom: 2px solid rgba(0, 0, 0, .1);
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -21,7 +43,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-2 py-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

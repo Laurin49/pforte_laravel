@@ -31,4 +31,5 @@ Route::middleware('auth')->group(function () {
 });
 Route::resource('categories', CategoryController::class);
 Route::resource('subjects', SubjectController::class);
+Route::get('/subjects/{id}/category', [SubjectController::class, 'subjectsByCategory']);
 require __DIR__.'/auth.php';

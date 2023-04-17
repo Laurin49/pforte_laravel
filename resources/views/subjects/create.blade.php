@@ -69,7 +69,7 @@
                             </label>
                             <textarea name="beschreibung"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                rows="4" placeholder="400"> {{old('beschreibung')}}</textarea>
+                                rows="8" placeholder="400">{{old('beschreibung')}}</textarea>
                             @error('beschreibung')
                             <span class="text-sm text-red-600">
                                 {{ $message }}

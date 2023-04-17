@@ -17,17 +17,23 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = $this->getSubjects(request('search'));
+        $categories = Category::all();
+        $currentCategory = "Alle";
         
-        return view('subjects.index')->with('subjects', $subjects);
+        return view('subjects.index')->with([
+            'subjects' => $subjects,
+            'categories' => $categories,
+            'currentCategory' => $currentCategory
+        ]);
     }
 
     private function getSubjects($search) {
         if (!isset($search)) {
-            $subjects = Subject::orderBy('created_at', 'desc')->paginate(20)->withQueryString();
+            $subjects = Subject::orderBy('created_at', 'asc')->paginate(10)->withQueryString();
         } else {
             $subjects = Subject::where('name', 'like', '%' . $search . '%')
                 ->orWhere('titel', 'like', '%' . $search . '%')
-                ->paginate(10)->withQueryString();
+                ->paginate(10);
         }
         return $subjects;
     }
@@ -132,5 +138,23 @@ class SubjectController extends Controller
     {
         $subject->delete();
         return redirect()->route('subjects.index')->with('message', "Subject deleted successfully");
+    }
+
+    public function subjectsByCategory($id) {
+        $currentCategory = "";
+        if ($id == 1) {
+            $subjects = Subject::orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+            $currentCategory = "Alle";
+        } else {
+            $subjects = Subject::where('category_id', $id)->paginate(10)->withQueryString();
+            $currentCategory = Category::where('id', $id)->first()->name;
+        }
+        $categories = Category::all();
+        
+        return view('subjects.index', [
+            'subjects' => $subjects,
+            'categories' => $categories,
+            'currentCategory' => $currentCategory
+        ]);
     }
 }
