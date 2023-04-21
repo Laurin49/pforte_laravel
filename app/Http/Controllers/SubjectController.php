@@ -16,9 +16,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = $this->getSubjects(request('search'));
+        $currentCategory = "Ambulant";
+        $subjects = $this->getSubjects(request('search'), $currentCategory);
         $categories = Category::all();
-        $currentCategory = "Alle";
         
         return view('subjects.index')->with([
             'subjects' => $subjects,
@@ -27,9 +27,14 @@ class SubjectController extends Controller
         ]);
     }
 
-    private function getSubjects($search) {
+    private function getSubjects($search, string $category_name) {
         if (!isset($search)) {
-            $subjects = Subject::orderBy('created_at', 'asc')->paginate(10)->withQueryString();
+            $subjects = Subject::whereHas('category', 
+                function($query) use($category_name) {
+                    $query->where('name', 'like', '%' . $category_name . '%');
+                }
+            )->orderBy('created_at', 'asc')
+            ->paginate(10)->withQueryString();
         } else {
             $subjects = Subject::where('name', 'like', '%' . $search . '%')
                 ->orWhere('titel', 'like', '%' . $search . '%')
