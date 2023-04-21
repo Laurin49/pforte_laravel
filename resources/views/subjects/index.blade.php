@@ -90,7 +90,7 @@
                                             <form action="{{ route('subjects.destroy', $subject) }}" method="POST" onsubmit="return confirm('{{ trans('Wollen Sie wirklich löschen ? ') }}');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="flex items-center">
+                                                <button type="submit">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     class="w-6 h-6 text-red-600 cursor-pointer hover:text-red-800" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor">
