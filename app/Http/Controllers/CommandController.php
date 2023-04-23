@@ -103,7 +103,9 @@ class CommandController extends Controller
      */
     public function show(Command $command)
     {
-        //
+        return view('commands.show', [
+            'command' => $command
+        ]);
     }
 
     /**

@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ 'Edit Category' }}
+            {{ 'Bearbeite Kategorie' }}
         </h2>
     </x-slot>
     <div class="font-sans antialiased">
         <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-start sm:pt-0">
             <div class="w-full px-16 py-20 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
                 <div class="mb-4">
-                    <h1 class="font-serif text-3xl font-bold">Edit Category</h1>
+                    <h1 class="font-serif text-3xl font-bold">Bearbeite Kategorie</h1>
                 </div>
                 <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
                     <form method="POST" action="{{ route('categories.update', $category->id) }}">
@@ -31,7 +31,7 @@
                         <div class="flex items-center justify-start mt-4">
                             <button type="submit"
                                 class="inline-flex items-center px-6 py-2 text-sm font-semibold rounded-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
-                                Update
+                                Speichern
                             </button>
                         </div>
                     </form>

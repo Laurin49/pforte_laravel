@@ -25,7 +25,7 @@
                     @if (Auth::guest())
                         <h1 class="font-medium text-1xl">Als Gast haben Sie nur eingeschränkten zugang. Bitte einloggen !</h1>
                     @endif
-                    @if (Auth::user()->isAdmin)
+                    @if (Auth::user()->is_admin)
                         <div class="font-serif text-2xl text-red-500">Als Admin eingeloggt.</div>
                     @else
                         <div class="font-serif text-2xl text-red-500">Als User eingeloggt.</div>

@@ -10,7 +10,7 @@
                 <div class="flex justify-end mb-4">
                     <a href="{{ route('commands.index') }}"
                         class="px-4 py-2 bg-gray-500 rounded-md text-sky-100 hover:bg-gray-600">
-                        <- Back </a>
+                        <- Zurück </a>
                 </div>
                 <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
                     <form action="{{ route('commands.update', $command->id) }}" method="POST">
@@ -75,7 +75,7 @@
                         <div class="flex items-center justify-start mt-4">
                             <button type="submit"
                                 class="inline-flex items-center px-6 py-2 text-sm font-semibold rounded-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
-                                Update
+                                Speichern
                             </button>
                         </div>
                     </form>

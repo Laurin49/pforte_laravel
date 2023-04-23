@@ -5,22 +5,29 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('subjects.index') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
-                        {{ __('Categories') }}
-                    </x-nav-link>
-                </div>
+                </div> --}}
+                @if (Auth::user()->is_admin)
+                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    </div> --}}
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
+                            {{ __('Categories') }}
+                        </x-nav-link>
+                    </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('subjects.index')" :active="request()->routeIs('subjects')">
                         {{ __('Themen') }}
@@ -49,9 +56,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        {{-- <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -81,16 +88,23 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
-                {{ __('Categories') }}
-            </x-responsive-nav-link>
-        </div>
+        </div> --}}
+        @if (Auth::user()->is_admin)
+            {{-- <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
+            </div> --}}
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
+                    {{ __('Categories') }}
+                </x-responsive-nav-link>
+            </div>
+        @endif
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('subjects.index')" :active="request()->routeIs('subjects')">
                 {{ __('Themen') }}
@@ -110,9 +124,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                {{-- <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

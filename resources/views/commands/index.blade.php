@@ -78,13 +78,13 @@
                                 Jahr
                             </th>
                             <th class="text-xs text-left uppercase border-b border-gray-200 gray-500 bg-gray-50"
-                                colspan="2"">
-                                Action
+                                colspan="3"">
+                                Aktion
                             </th>
                         </thead>
                         <tbody>
                             @foreach ($commands as $command)
-                                <tr>
+                                <tr class="hover:bg-gray-200">
                                     <td class="px-6 py-3 border border-gray-200">
                                         <div class="flex items-center">
                                             {{ $command->name }}
@@ -101,25 +101,52 @@
                                         </div>
                                     </td>
                                     <td
-                                        class="text-sm font-medium leading-5 text-center whitespace-no-wrap border border-gray-200 ">
-                                        <a href="{{ route('commands.edit', $command->id) }}"
-                                            class="text-indigo-600 hover:text-indigo-900">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
+                                        class="text-sm font-medium leading-5 text-center whitespace-no-wrap border border-grey-light ">
+                                        <a href="{{ route('commands.show', $command->id) }}"
+                                            class="text-green-600 hover:text-green-900" title="Zeige Anweisung">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                             </svg>
                                         </a>
                                     </td>
                                     <td
                                         class="text-sm font-medium leading-5 text-center whitespace-no-wrap border border-gray-200 ">
+                                        @if (Auth::user()->is_admin)
+                                            <a href="{{ route('commands.edit', $command->id) }}"
+                                                title="Bearbeite Anweisung"
+                                                class="text-indigo-600 hover:text-indigo-900">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                            </a>
+                                        @else
+                                            <a href="#" class="text-gray-600 cursor-default">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                            </a>
+                                        @endif
+                                    </td>
+                                    <td
+                                        class="text-sm font-medium leading-5 text-center whitespace-no-wrap border border-gray-200 ">
                                         <form action="{{ route('commands.destroy', $command->id) }}" method="POST"
+                                            title="Lösche Anweisung"
                                             onsubmit="return confirm('{{ trans('Wollen Sie wirklich löschen ? ') }}')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="flex items-center">
+                                            <button type="submit" class="flex items-center"
+                                                {{ !Auth::user()->is_admin ? 'disabled' : '' }}>
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="w-6 h-6 text-red-600 cursor-pointer hover:text-red-800"
+                                                    class="w-6 h-6 
+                                                    {{ !Auth::user()->is_admin ? 'text-gray-600' : 'text-red-600 cursor-pointer hover:text-red-800' }}"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
