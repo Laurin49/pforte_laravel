@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ 'Categories' }}
+            {{ 'Kategorien' }}
         </h2>
     </x-slot>
     <div class="container max-w-6xl mx-auto mt-20">
         <div class="mb-4">
-            <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Category Liste</h1>
+            <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Kategorien</h1>
             @if (session()->has('message'))
                 <div class="p-3 my-2 text-green-100 bg-green-500 rounded">
                     {{ session('message') }}
@@ -14,7 +14,7 @@
             @endif
             <div class="flex justify-end">
                 <a href="{{ route('categories.create')}}" class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">
-                    Create Category
+                    Neue Kategorie
                 </a>
             </div>
         </div>
@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
-                                <tr>
+                                <tr class="hover:bg-gray-200">
                                     <td class="px-6 py-3 border-b border-gray-200 whitespace-nowrap">
                                         <div class="flex items-center">
                                             {{ $category->id }}
